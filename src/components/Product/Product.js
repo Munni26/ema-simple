@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Product = (props) => {
    //console.log(props);
+    // const {product, handleAddProduct} = props;
     const {img, name, seller, price, stock, key} = props.product;
     return (
         <div className="product">
