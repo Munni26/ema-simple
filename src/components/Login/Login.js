@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import { createUserWithEmailAndPassword, handleGoogleSignIn, handleSignOut, initializeLoginFramework, signInWithEmailAndPassword } from './loginManager';
+import { createUserWithEmailAndPassword, handleGoogleSignIn, handleSignOut, initializeLoginFramework, resetPassword, signInWithEmailAndPassword } from './loginManager';
 
 
 function Login() {
@@ -27,19 +27,6 @@ function Login() {
                 handleResponse(res, true);
             })
     }
-    // const googleSignIn = () => {
-    //     handleGoogleSignIn()
-    //         .then(res => {
-    //             handleResponse(res, true)
-    //         })
-    // }
-
-    // const signOut = () => {
-    //     handleSignOut()
-    //         .then(res => {
-    //             handleResponse(res, false)
-    //         })
-    // }
 
     const signOut = () => {
         handleSignOut()
@@ -96,74 +83,9 @@ function Login() {
         e.preventDefault();
 
     }
-    // const handleResponse = (res, redirect) => {
-    //     setUser(res)
-    //     const { name, email } = res
-    //     const signedInUser = { name: name, email: email }
 
-    //     setLoggedInUser(signedInUser)
-    //     if (redirect) {
-    //         history.replace(from);
-    //     }
-    // }
-
-    //     const handleSubmit = (e) => {
-    //         //console.log(user.email, user.password);
-    //         if (newUser && user.email && user.password) {
-    // }
-
-    // if (!newUser && user.email && user.password) {
-
-    // }
-
-    // e.preventDefault();
-    //     }
 
     return (
-        // <div style={{ textAlign: 'center' }}>
-        //     {
-        //         user.isSigned ? <button onClick={signOut}> Sign Out</button>
-        //             : <button onClick={googleSignIn}>  Sign In</button>
-        //     }
-        //     <br />
-        //     {
-        //         user.isSigned &&
-        //         <div>
-        //             <p>Welcome {user.name} </p>
-        //             <p>Your Mail: {user.email}</p>
-        //             <img src={user.photo} alt="" />
-        //         </div>
-        //     }
-        //     <br />
-        //     <h1>Our Authentication</h1>
-        //     <input type="checkbox" onChange={() => setNewUser(!newUser)} name="userName" />
-        //     <label htmlFor="newUser">New-user-Sign-up</label>
-
-
-        //     <form onSubmit={handleSubmit}>
-        //         {newUser &&
-        //             <input onChange={handleBlur} name="name" type="text" placeholder="name" />
-
-
-        //         }
-        //         <br />
-        //         <input required name="email" onChange={handleBlur} placeholder="Your Email Address" type="email" />
-        //         <br />
-        //         <input name="password" onChange={handleBlur} placeholder="Your Password" type="password" required />
-        //         <br />
-        //         <input type="submit" value={newUser ? 'Sign-up' : 'Sign-in'} />
-        //     </form>
-
-        //     {/* <button onClick={() => resetPass(user.email)}>Forget or reset password</button> */}
-
-        //     <p style={{ color: 'red' }}>{user.error}</p>
-
-        //     {
-        //         user.success && <p style={{ color: 'green' }}>user {newUser ? "successfully" : "logged in"} created</p>
-        //     }
-        // </div>
-
-
 
         <div style={{ textAlign: 'center' }}>
             {
@@ -196,6 +118,7 @@ function Login() {
                 <br />
                 <input type="submit" value={newUser ? 'Sign Up' : 'Sign In'} />
             </form>
+            <button onClick={() => resetPassword(user.email)}>Forget or Reset Password</button>
             <p style={{ color: 'red' }}>{user.error}</p>
             { user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
         </div>
