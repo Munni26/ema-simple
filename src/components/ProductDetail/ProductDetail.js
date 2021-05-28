@@ -5,12 +5,12 @@ import Product from '../Product/Product';
 
 const ProductDetail = () => {
     const { productKey } = useParams();
-    const[product, setProduct] = useState({});
+    const [product, setProduct] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:5000/product/' + productKey)
-        .then(res => res.json())
-        .then(data => setProduct(data))
+        fetch('https://damp-dusk-26618.herokuapp.com/product/' + productKey)
+            .then(res => res.json())
+            .then(data => setProduct(data))
     }, [productKey])
     //const product = fakeData.find(pd => pd.key === productKey);
 

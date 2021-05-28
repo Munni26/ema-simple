@@ -12,9 +12,11 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     // console.log(products)
     const [cart, setCart] = useState([]);
+    const [search, setSearch] = useState([]);
+    document.title = "Shop More"
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://damp-dusk-26618.herokuapp.com/products?search=' + search)
             .then(res => res.json())
             .then(data => {
                 setProducts(data)
@@ -22,12 +24,12 @@ const Shop = () => {
 
             })
 
-    }, [])
+    }, [search])
 
     useEffect(() => {
         const savedCart = getDatabaseCart();
         const productKeys = Object.keys(savedCart);
-        fetch('http://localhost:5000/productByKeys', {
+        fetch('https://damp-dusk-26618.herokuapp.com/productByKeys', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,6 +49,10 @@ const Shop = () => {
         //     setCart(previousCart);
         // }
     }, [])
+
+    const handleSearch = event => {
+        setSearch(event.target.value);
+    }
 
     const handleAddProduct = (product) => {
         const toBeAddedKey = product.key;
@@ -71,6 +77,7 @@ const Shop = () => {
     return (
         <div className="twin-container">
             <div className="product-container">
+                <input type="text" onBlur={handleSearch} placeholder="Search" className="product-search" />
                 {
                     products.map(pd => <Product
                         key={pd.key}

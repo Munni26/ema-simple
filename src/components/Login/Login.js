@@ -8,6 +8,7 @@ function Login() {
     const [newUser, setNewUser] = useState(false);
     const [user, setUser] = useState({
         isSignedIn: false,
+        
         name: '',
         email: '',
         password: '',
@@ -56,7 +57,7 @@ function Login() {
             isFieldValid = isPasswordValid && passwordHasNumber;
         }
         if (isFieldValid) {
-            //[...cart, newItem]
+            
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo);
